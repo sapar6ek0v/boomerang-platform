@@ -6,7 +6,7 @@ import superjson from 'superjson'
 import { SessionProvider } from 'next-auth/react'
 import { NotificationsProvider } from '@mantine/notifications'
 import '../styles/globals.css'
-import Layout from '../components/Layout/Layout'
+import Layout from '../components/Layout'
 
 const MyApp: AppType = ({
   Component,
