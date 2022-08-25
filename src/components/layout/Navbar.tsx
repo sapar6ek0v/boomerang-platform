@@ -10,6 +10,7 @@ import {
   IconReceipt2,
   IconLogout,
 } from '@tabler/icons'
+import Link from 'next/link'
 
 const useStyles = createStyles((theme, _params, getRef) => {
   const icon = getRef('icon')
@@ -20,6 +21,10 @@ const useStyles = createStyles((theme, _params, getRef) => {
         color: theme.primaryColor,
       }).background,
       padding: '40px 20px',
+      height: '600px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
     },
 
     version: {
@@ -100,20 +105,17 @@ const NavbarColored = () => {
   const [active, setActive] = useState('Billing')
 
   const links = data.map((item) => (
-    <a
-      className={cx(classes.link, {
-        [classes.linkActive]: item.label === active,
-      })}
-      href={item.link}
-      key={item.label}
-      onClick={(event) => {
-        event.preventDefault()
-        setActive(item.label)
-      }}
-    >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
-      <span>{item.label}</span>
-    </a>
+    <Link href={item.link} key={item.label}>
+      <a
+        className={cx(classes.link, {
+          [classes.linkActive]: item.label === active,
+        })}
+        onClick={() => setActive(item.label)}
+      >
+        <item.icon className={classes.linkIcon} stroke={1.5} />
+        <span>{item.label}</span>
+      </a>
+    </Link>
   ))
 
   return (

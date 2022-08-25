@@ -116,11 +116,12 @@ const OrderForm = () => {
       console.log(error)
     }
   }
+
   return (
     <Box
       sx={{
         maxWidth: 500,
-        backgroundColor: '#EEEEEE',
+        backgroundColor: '#D6EFED',
         padding: '20px',
         borderRadius: '5px',
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',

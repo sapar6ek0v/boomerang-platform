@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { createStyles, Header, Container, Group, Burger } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import Link from 'next/link'
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -64,21 +65,19 @@ const HeaderColored = ({ links }: HeaderSimpleProps) => {
   const [opened, { toggle }] = useDisclosure(false)
   const [active, setActive] = useState(links[0]?.link)
   const { classes, cx } = useStyles()
+  console.log(active)
 
   const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={cx(classes.link, {
-        [classes.linkActive]: active === link.link,
-      })}
-      onClick={(event) => {
-        event.preventDefault()
-        setActive(link.link)
-      }}
-    >
-      {link.label}
-    </a>
+    <Link key={link.label} href={link.link}>
+      <a
+        className={cx(classes.link, {
+          [classes.linkActive]: active === link.link,
+        })}
+        onClick={() => setActive(link.link)}
+      >
+        {link.label}
+      </a>
+    </Link>
   ))
 
   return (

@@ -15,8 +15,10 @@ const Layout: FC<Props> = ({ children }) => {
       header={
         <HeaderColored
           links={[
-            { link: '/', label: 'Home' },
-            { link: '/orders', label: 'Orders' },
+            { link: '/', label: 'Оформит Заказ' },
+            { link: '/orders', label: 'Все Заказы' },
+            { link: '/couriers', label: 'Курьеры' },
+            { link: '/restaurants', label: 'Рестораны' },
           ]}
         />
       }
