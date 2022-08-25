@@ -8,11 +8,11 @@ export const courierRouter = createRouter()
     input: CourierInputSchema,
     async resolve({ input, ctx }) {
       try {
-        const courier = await ctx.prisma.courier.create({
+        const newCourier = await ctx.prisma.courier.create({
           data: { ...input },
         })
 
-        return courier
+        return newCourier
       } catch (error) {
         throw new trpc.TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
