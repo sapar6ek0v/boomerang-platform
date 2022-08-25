@@ -1,5 +1,7 @@
 ﻿import { AppShell } from '@mantine/core'
 import { FC, ReactNode } from 'react'
+import HeaderColored from './Header'
+import NavbarColored from './Navbar'
 
 type Props = {
   children: ReactNode
@@ -9,8 +11,15 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <AppShell
       padding="md"
-      // navbar={<Navbar width={{ base: 300 }} height={500} p="xs">{/* Navbar content */}</Navbar>}
-      // header={<Header height={60} p="xs">{/* Header content */}</Header>}
+      navbar={<NavbarColored />}
+      header={
+        <HeaderColored
+          links={[
+            { link: '/', label: 'Home' },
+            { link: '/orders', label: 'Orders' },
+          ]}
+        />
+      }
       styles={(theme) => ({
         main: {
           backgroundColor:
