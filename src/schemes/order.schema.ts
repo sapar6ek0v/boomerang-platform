@@ -41,6 +41,7 @@ export const OrderSchema = z.object({
       invalid_type_error: 'Цена за доставку должно быть числом',
     })
     .min(1, 'Цена за доставку не должно быть меньше 1 сома'),
+  categories: z.string().array().min(1, { message: 'Выберите категорию' }),
 })
 
 export const OrderInputSchema = OrderSchema.omit({
