@@ -108,8 +108,5 @@ model CategoriesOnOrder{
     orderId    String 
     category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
     categoryId String 
-    assignedAt DateTime @default(now())
-    assignedBy String
-
     @@id([orderId, categoryId])
 }

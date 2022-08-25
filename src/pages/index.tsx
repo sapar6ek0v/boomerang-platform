@@ -4,10 +4,12 @@ import {
   Button,
   Group,
   Input,
+  MultiSelect,
   NumberInput,
   Select,
   SelectItem,
   Textarea,
+  TextInput,
 } from '@mantine/core'
 import type { NextPage } from 'next'
 import { useForm, zodResolver } from '@mantine/form'
@@ -30,9 +32,11 @@ const Home: NextPage = () => {
       orderPlace: '',
       orderPrice: 0,
       comment: '',
+      categories: [],
     },
     validate: zodResolver(OrderInputSchema),
   })
+
   const [visible, setVisible] = useState(false)
 
   const { mutate: createOrder } = trpc.useMutation(['order.create'], {
@@ -49,6 +53,8 @@ const Home: NextPage = () => {
     { id: form.values.restaurant },
   ])
   const restaurantBranches = branchesQuery.data?.branches || []
+  const categoriesQuery = trpc.useQuery(['category.getAll'])
+  const categories = categoriesQuery.data || []
 
   const couriersSelectItems: SelectItem[] = couriers.map<SelectItem>(
     (item) => ({
@@ -68,6 +74,13 @@ const Home: NextPage = () => {
     (item) => ({
       value: item.id,
       label: `${item.branchName}`,
+    })
+  )
+
+  const categoriesSelectItems: SelectItem[] = categories.map<SelectItem>(
+    (item) => ({
+      value: item.id,
+      label: `${item.name}`,
     })
   )
 
@@ -126,11 +139,18 @@ const Home: NextPage = () => {
                 mt="md"
               />
             )}
+            <MultiSelect
+              label="Выберите категорию"
+              placeholder="Выберите одну категорию"
+              data={categoriesSelectItems}
+              {...form.getInputProps('categories')}
+              mt="md"
+            />
             <Input.Wrapper label="Цена" required mt="md">
               <NumberInput {...form.getInputProps('price')} />
             </Input.Wrapper>
             <Input.Wrapper label="Место доставки" required mt="md">
-              <Input {...form.getInputProps('orderPlace')} />
+              <TextInput {...form.getInputProps('orderPlace')} />
             </Input.Wrapper>
             <Input.Wrapper label="Цена доставки" required mt="md">
               <NumberInput {...form.getInputProps('orderPrice')} />

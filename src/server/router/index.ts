@@ -18,7 +18,7 @@ export const appRouter = createRouter()
   .merge('courier.', courierRouter)
   .merge('restaurant.', restaurantRouter)
   .merge('branch.', branchRouter)
-  .merge('category', categoryRouter)
+  .merge('category.', categoryRouter)
 
 // export type definition of API
 export type AppRouter = typeof appRouter
