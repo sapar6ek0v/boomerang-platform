@@ -2,6 +2,7 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable react/jsx-props-no-spreading */
 import { withTRPC } from '@trpc/next';
+import { useEffect, useState } from 'react';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import superjson from 'superjson';
 import { SessionProvider } from 'next-auth/react';
@@ -9,17 +10,30 @@ import { NotificationsProvider } from '@mantine/notifications';
 import type { AppRouter } from '../server/router';
 import '../styles/globals.css';
 import Layout from '../components/Layout';
+import CustomLoader from '../components/CustomLoader';
 
 const MyApp: AppType = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, [loading]);
+
+  if (loading) return <CustomLoader />;
+
   return (
     <SessionProvider session={session}>
       <NotificationsProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {!loading && (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
       </NotificationsProvider>
     </SessionProvider>
   );
