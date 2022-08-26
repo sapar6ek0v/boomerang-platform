@@ -1,4 +1,4 @@
-﻿import { z } from 'zod'
+﻿import { z } from 'zod';
 
 export const BranchSchema = z.object({
   id: z.string().cuid(),
@@ -14,10 +14,12 @@ export const BranchSchema = z.object({
     required_error: 'Branch Name name is required',
     invalid_type_error: 'Branch Name name must be a string',
   }),
-})
+});
 
 export const BranchInputSchema = BranchSchema.omit({
   id: true,
-})
+});
 
-export type BranchInput = z.TypeOf<typeof BranchInputSchema>
+export type BranchReturnType = z.TypeOf<typeof BranchSchema>;
+
+export type BranchInput = z.TypeOf<typeof BranchInputSchema>;

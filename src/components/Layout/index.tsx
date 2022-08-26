@@ -1,11 +1,11 @@
-﻿import { AppShell } from '@mantine/core'
-import { FC, ReactNode } from 'react'
-import HeaderColored from './Header'
-import NavbarColored from './Navbar'
+﻿import { AppShell } from '@mantine/core';
+import { FC, ReactNode } from 'react';
+import HeaderColored from './Header';
+import NavbarColored from './Navbar';
 
 type Props = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 const Layout: FC<Props> = ({ children }) => {
   return (
@@ -33,7 +33,7 @@ const Layout: FC<Props> = ({ children }) => {
     >
       {children}
     </AppShell>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

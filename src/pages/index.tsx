@@ -1,9 +1,10 @@
-import type { NextPage } from 'next'
+/* eslint-disable react/function-component-definition */
+import type { NextPage } from 'next';
 
-import OrderForm from '../components/OrderForm/OrderForm'
+import OrderForm from '../components/OrderForm/OrderForm';
 
 const Home: NextPage = () => {
-  return <OrderForm />
-}
+  return <OrderForm />;
+};
 
-export default Home
+export default Home;

@@ -1,4 +1,4 @@
-﻿import { z } from 'zod'
+﻿import { z } from 'zod';
 
 export const CategorySchema = z.object({
   id: z.string().cuid(),
@@ -10,10 +10,12 @@ export const CategorySchema = z.object({
     required_error: 'RestaurantId name is required',
     invalid_type_error: 'RestaurantId name must be a string',
   }),
-})
+});
 
 export const CategoryInputSchema = CategorySchema.omit({
   id: true,
-})
+});
 
-export type CourierInput = z.TypeOf<typeof CategoryInputSchema>
+export type CategoryReturnType = z.TypeOf<typeof CategorySchema>;
+
+export type CourierInput = z.TypeOf<typeof CategoryInputSchema>;

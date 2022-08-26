@@ -1,5 +1,5 @@
 // @ts-check
-import { z } from 'zod'
+import { z } from 'zod';
 
 /**
  * Specify your server-side environment variables schema here.
@@ -10,7 +10,7 @@ export const serverSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
   NEXTAUTH_SECRET: z.string(),
   NEXTAUTH_URL: z.string().url(),
-})
+});
 
 /**
  * Specify your client-side environment variables schema here.
@@ -22,7 +22,7 @@ export const clientSchema = z.object({
   NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
   NEXT_PUBLIC_SUPABASE_STORAGE: z.string(),
-})
+});
 
 /**
  * You can't destruct `process.env` as a regular object, so you have to do
@@ -36,4 +36,4 @@ export const clientEnv = {
   NEXT_PUBLIC_SUPABASE_STORAGE:
     process.env.NEXT_PUBLIC_SUPABASE_STORAGE ||
     `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public`,
-}
+};

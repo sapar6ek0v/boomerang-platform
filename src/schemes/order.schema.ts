@@ -1,4 +1,4 @@
-﻿import { z } from 'zod'
+﻿import { z } from 'zod';
 
 export const OrderSchema = z.object({
   id: z.string().cuid(),
@@ -42,10 +42,10 @@ export const OrderSchema = z.object({
     })
     .min(1, 'Цена за доставку не должно быть меньше 1 сома'),
   categories: z.string().array().min(1, { message: 'Выберите категорию' }),
-})
+});
 
 export const OrderInputSchema = OrderSchema.omit({
   id: true,
-})
+});
 
-export type OrderInput = z.TypeOf<typeof OrderInputSchema>
+export type OrderInput = z.TypeOf<typeof OrderInputSchema>;

@@ -1,5 +1,5 @@
-﻿import React, { useState } from 'react'
-import { z } from 'zod'
+﻿import React, { useState } from 'react';
+import { z } from 'zod';
 import {
   Box,
   Button,
@@ -11,15 +11,15 @@ import {
   SelectItem,
   Textarea,
   TextInput,
-} from '@mantine/core'
-import { useForm, zodResolver } from '@mantine/form'
+} from '@mantine/core';
+import { useForm, zodResolver } from '@mantine/form';
 
-import { trpc } from '../../utils/trpc'
-import { OrderInputSchema } from '../../schemes/order.schema'
-import OverlayLoader from '../OverlayLoader/'
-import { notification } from '../Notification/Notification'
+import { trpc } from '../../utils/trpc';
+import { OrderInputSchema } from '../../schemes/order.schema';
+import OverlayLoader from '../OverlayLoader';
+import { notification } from '../Notification/Notification';
 
-export type FormValues = z.infer<typeof OrderInputSchema>
+export type FormValues = z.infer<typeof OrderInputSchema>;
 
 const OrderForm = () => {
   const form = useForm<FormValues>({
@@ -34,88 +34,90 @@ const OrderForm = () => {
       categories: [],
     },
     validate: zodResolver(OrderInputSchema),
-  })
+  });
+  const restaurantId = form.values.restaurant;
 
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const { mutate: createOrder } = trpc.useMutation(['order.create'], {
     onSuccess() {
-      setVisible(false)
+      setVisible(false);
     },
     onError(error) {
-      notification('Error', `${error.message}`)
-      setVisible(false)
+      notification('Error', `${error.message}`);
+      setVisible(false);
     },
-  })
+  });
   const couriersQuery = trpc.useQuery(['courier.getAll'], {
     onError(error) {
-      notification('Error', `${error.message}`)
-      setVisible(false)
+      notification('Error', `${error.message}`);
+      setVisible(false);
     },
-  })
-  const couriers = couriersQuery.data || []
+  });
+  const couriers = couriersQuery.data || [];
   const restaurantsQuery = trpc.useQuery(['restaurant.getAll'], {
     onError(error) {
-      notification('Error', `${error.message}`)
-      setVisible(false)
+      notification('Error', `${error.message}`);
+      setVisible(false);
     },
-  })
-  const restaurants = restaurantsQuery.data || []
+  });
+  const restaurants = restaurantsQuery.data || [];
   const branchesQuery = trpc.useQuery(
-    ['restaurant.getById', { id: form.values.restaurant }],
+    ['restaurant.getById', { id: restaurantId }],
     {
       onError(error) {
-        notification('Error', `${error.message}`)
-        setVisible(false)
+        notification('Error', `${error.message}`);
+        setVisible(false);
       },
     }
-  )
-  const restaurantBranches = branchesQuery.data?.branches || []
+  );
+  const restaurantBranches = branchesQuery.data?.branches || [];
   const categoriesQuery = trpc.useQuery(['category.getAll'], {
     onError(error) {
-      notification('Error', `${error.message}`)
-      setVisible(false)
+      notification('Error', `${error.message}`);
+      setVisible(false);
     },
-  })
-  const categories = categoriesQuery.data || []
+  });
+  const categories = categoriesQuery.data || [];
 
   const couriersSelectItems: SelectItem[] = couriers.map<SelectItem>(
     (item) => ({
       value: item.id,
       label: `${item.firstName} ${item.lastName}`,
     })
-  )
+  );
 
   const restaurantsSelectItems: SelectItem[] = restaurants.map<SelectItem>(
     (item) => ({
       value: item.id,
       label: `${item.name}`,
     })
-  )
+  );
 
-  const branchesSelectItems: SelectItem[] = restaurantBranches?.map<SelectItem>(
+  const branchesSelectItems: SelectItem[] = restaurantBranches.map<SelectItem>(
     (item) => ({
       value: item.id,
       label: `${item.branchName}`,
     })
-  )
+  );
 
   const categoriesSelectItems: SelectItem[] = categories.map<SelectItem>(
     (item) => ({
       value: item.id,
       label: `${item.name}`,
     })
-  )
+  );
 
   const handleSubmit = (values: FormValues) => {
-    setVisible(true)
+    setVisible(true);
     try {
-      createOrder(values)
-      form.reset()
-    } catch (error) {
-      console.log(error)
+      createOrder(values);
+      form.reset();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      notification('Error', `${error.message}`);
     }
-  }
+  };
 
   return (
     <Box
@@ -192,7 +194,7 @@ const OrderForm = () => {
         </Group>
       </form>
     </Box>
-  )
-}
+  );
+};
 
-export default OrderForm
+export default OrderForm;
