@@ -1,5 +1,5 @@
-﻿import { z } from 'zod'
-import { OrderSchema } from './order.schema'
+﻿import { z } from 'zod';
+import { OrderSchema } from './order.schema';
 
 export const CourierSchema = z.object({
   id: z.string().cuid(),
@@ -21,10 +21,12 @@ export const CourierSchema = z.object({
     })
     .optional(),
   orders: z.array(OrderSchema),
-})
+});
 
 export const CourierInputSchema = CourierSchema.omit({
   id: true,
-})
+});
 
-export type CourierInput = z.TypeOf<typeof CourierInputSchema>
+export type CourierReturnType = z.TypeOf<typeof CourierSchema>;
+
+export type CourierInput = z.TypeOf<typeof CourierInputSchema>;

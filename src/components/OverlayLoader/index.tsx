@@ -1,10 +1,10 @@
-﻿import React from 'react'
-import { LoadingOverlay } from '@mantine/core'
+﻿import React from 'react';
+import { LoadingOverlay } from '@mantine/core';
 
 export type Props = {
-  children: React.ReactNode
-  visible: boolean
-}
+  children: React.ReactNode;
+  visible: boolean;
+};
 
 const OverlayLoader: React.FC<Props> = ({ children, visible }) => {
   return (
@@ -12,7 +12,7 @@ const OverlayLoader: React.FC<Props> = ({ children, visible }) => {
       <LoadingOverlay visible={visible} overlayBlur={2} />
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default OverlayLoader
+export default OverlayLoader;

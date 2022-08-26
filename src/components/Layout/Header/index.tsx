@@ -1,7 +1,8 @@
-﻿import { useState } from 'react'
-import { createStyles, Header, Container, Group, Burger } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
-import Link from 'next/link'
+﻿/* eslint-disable security/detect-non-literal-fs-filename */
+import { useState } from 'react';
+import { createStyles, Header, Container, Group, Burger } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -55,17 +56,16 @@ const useStyles = createStyles((theme) => ({
         .color,
     },
   },
-}))
+}));
 
 interface HeaderSimpleProps {
-  links: { link: string; label: string }[]
+  links: { link: string; label: string }[];
 }
 
 const HeaderColored = ({ links }: HeaderSimpleProps) => {
-  const [opened, { toggle }] = useDisclosure(false)
-  const [active, setActive] = useState(links[0]?.link)
-  const { classes, cx } = useStyles()
-  console.log(active)
+  const [opened, { toggle }] = useDisclosure(false);
+  const [active, setActive] = useState(links[0]?.link);
+  const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
     <Link key={link.label} href={link.link}>
@@ -78,7 +78,7 @@ const HeaderColored = ({ links }: HeaderSimpleProps) => {
         {link.label}
       </a>
     </Link>
-  ))
+  ));
 
   return (
     <Header height={60} mb={120}>
@@ -95,7 +95,7 @@ const HeaderColored = ({ links }: HeaderSimpleProps) => {
         />
       </Container>
     </Header>
-  )
-}
+  );
+};
 
-export default HeaderColored
+export default HeaderColored;

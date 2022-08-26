@@ -1,6 +1,6 @@
-﻿import React from 'react'
-import { showNotification } from '@mantine/notifications'
-import { IconX } from '@tabler/icons'
+﻿import React from 'react';
+import { showNotification } from '@mantine/notifications';
+import { IconX } from '@tabler/icons';
 
 export const notification = (title: string, message: string) => {
   return showNotification({
@@ -15,5 +15,5 @@ export const notification = (title: string, message: string) => {
     style: { backgroundColor: 'white' },
     sx: { backgroundColor: 'red' },
     loading: false,
-  })
-}
+  });
+};

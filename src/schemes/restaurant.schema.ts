@@ -1,5 +1,5 @@
-﻿import { z } from 'zod'
-import { BranchSchema } from './branch.schema'
+﻿import { z } from 'zod';
+import { BranchSchema } from './branch.schema';
 
 export const RestaurantSchema = z.object({
   id: z.string().cuid(),
@@ -8,10 +8,12 @@ export const RestaurantSchema = z.object({
     invalid_type_error: 'Restaurant name must be a string',
   }),
   branches: z.array(BranchSchema),
-})
+});
 
 export const RestaurantInputSchema = RestaurantSchema.omit({
   id: true,
-})
+});
 
-export type CourierInput = z.TypeOf<typeof RestaurantInputSchema>
+export type RestaurantReturnType = z.TypeOf<typeof RestaurantSchema>;
+
+export type CourierInput = z.TypeOf<typeof RestaurantInputSchema>;

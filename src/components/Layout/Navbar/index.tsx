@@ -1,5 +1,6 @@
-﻿import { useState } from 'react'
-import { createStyles, Navbar } from '@mantine/core'
+﻿/* eslint-disable security/detect-non-literal-fs-filename */
+import { useState } from 'react';
+import { createStyles, Navbar } from '@mantine/core';
 import {
   IconBellRinging,
   IconFingerprint,
@@ -9,11 +10,11 @@ import {
   IconDatabaseImport,
   IconReceipt2,
   IconLogout,
-} from '@tabler/icons'
-import Link from 'next/link'
+} from '@tabler/icons';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme, _params, getRef) => {
-  const icon = getRef('icon')
+  const icon = getRef('icon');
   return {
     navbar: {
       backgroundColor: theme.fn.variant({
@@ -87,8 +88,8 @@ const useStyles = createStyles((theme, _params, getRef) => {
         },
       },
     },
-  }
-})
+  };
+});
 
 const data = [
   { link: '', label: 'Notifications', icon: IconBellRinging },
@@ -98,11 +99,11 @@ const data = [
   { link: '', label: 'Databases', icon: IconDatabaseImport },
   { link: '', label: 'Authentication', icon: Icon2fa },
   { link: '', label: 'Other Settings', icon: IconSettings },
-]
+];
 
 const NavbarColored = () => {
-  const { classes, cx } = useStyles()
-  const [active, setActive] = useState('Billing')
+  const { classes, cx } = useStyles();
+  const [active, setActive] = useState('Billing');
 
   const links = data.map((item) => (
     <Link href={item.link} key={item.label}>
@@ -116,7 +117,7 @@ const NavbarColored = () => {
         <span>{item.label}</span>
       </a>
     </Link>
-  ))
+  ));
 
   return (
     <Navbar height={700} width={{ sm: 300 }} className={classes.navbar}>
@@ -133,7 +134,7 @@ const NavbarColored = () => {
         </a>
       </Navbar.Section>
     </Navbar>
-  )
-}
+  );
+};
 
-export default NavbarColored
+export default NavbarColored;

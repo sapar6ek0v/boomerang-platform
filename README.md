@@ -2,6 +2,36 @@
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
 
+## Installation
+
+```bash
+$ npm install
+```
+
+## Running the app
+
+```bash
+# development
+$ npm run dev
+
+# production mode
+$ npm run build
+```
+
+# Database
+
+I used supabase remote store.
+You need to add "DATABASE_URL" in .env file
+
+# Migration
+
+After setup database, you would create migration to connect database.
+`npm run migration:create "ANY_NAME"`
+
+# Demo
+
+URL: `https://boomerang-platform-agm1m0gn2-sapar6ek0v.vercel.app/`
+
 ## Why are there `.js` files in here?
 
 As per [T3-Axiom #3](https://github.com/t3-oss/create-t3-app/tree/next#3-typesafety-isnt-optional), we take typesafety as a first class citizen. Unfortunately, not all frameworks and plugins support TypeScript which means some of the configuration files have to be `.js` files.
